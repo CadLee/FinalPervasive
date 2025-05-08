@@ -4,12 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerControl : MonoBehaviour
 {
-    [SerializeField] public float chargeTime;
-
     private PlayerInputActions controls;
-    private bool isLeftHandCharging = false;
-    private bool isRightHandCharging = false;
-
     private enum ArmState { Neutral, PulledBack, PushedOutside, PushedInside, Block, Idle }
     private ArmState leftArmState = ArmState.Neutral;
     private ArmState rightArmState = ArmState.Neutral;
@@ -19,23 +14,24 @@ public class PlayerControl : MonoBehaviour
         controls = new PlayerInputActions();
 
         controls.Player.Enable();
-
-        controls.Player.LeftHand.performed += LeftHand_performed;
-        controls.Player.RightHand.performed += RightHand_performed;
     }
 
-    private void LeftHand_performed(InputAction.CallbackContext context)
+    private void FixedUpdate()
     {
-        //Debug.Log(context);
-        Vector2 inputVector = context.ReadValue<Vector2>();
+        LeftHand_performed();
+        RightHand_performed();
+    }
+
+    private void LeftHand_performed()
+    {
+        Vector2 inputVector = controls.Player.LeftHand.ReadValue<Vector2>();
 
         HandleArmInput(inputVector, "Left Hand", ref leftArmState, isLeftJoystick: true);
     }
 
-    private void RightHand_performed(InputAction.CallbackContext context)
+    private void RightHand_performed()
     {
-        //Debug.Log(context);
-        Vector2 inputVector = context.ReadValue<Vector2>();
+        Vector2 inputVector = controls.Player.RightHand.ReadValue<Vector2>();
 
         HandleArmInput(inputVector, "Right Hand", ref rightArmState, isLeftJoystick: false);
     }
@@ -44,13 +40,13 @@ public class PlayerControl : MonoBehaviour
     {
         if (inputVector.y >= -0.3f && inputVector.y <= 0.3f && inputVector.x >= -0.3f && inputVector.x <= 0.3f && armState != ArmState.Neutral)
         {
-            Debug.Log($"{hand} Neutral");
+            //Debug.Log($"{hand} Neutral");
             armState = ArmState.Neutral; // Reset state after block
         }
 
         else if (inputVector.y >= -0.8f && inputVector.y <= -0.3f && armState != ArmState.PulledBack)
         {
-            Debug.Log($"{hand} PulledBack");
+            //Debug.Log($"{hand} PulledBack");
             armState = ArmState.PulledBack; // Reset state after block
         }
 
@@ -64,12 +60,12 @@ public class PlayerControl : MonoBehaviour
         {
             if (inputVector.x <= -0.6f)
             {
-                Debug.Log($"{hand} Pushed Out");
+                //Debug.Log($"{hand} Pushed Out");
                 armState = ArmState.PushedOutside; // Left joystick pushed left
             }
             else if (inputVector.x >= 0.6f)
             {
-                Debug.Log($"{hand} Pulled in");
+                //Debug.Log($"{hand} Pulled in");
                 armState = ArmState.PushedInside; // Left joystick pushed right
             }
         }
@@ -77,12 +73,12 @@ public class PlayerControl : MonoBehaviour
         {
             if (inputVector.x >= 0.5f)
             {
-                Debug.Log($"{hand} Pushed Out");
+                //Debug.Log($"{hand} Pushed Out");
                 armState = ArmState.PushedOutside; // Right joystick pushed right
             }
             else if (inputVector.x <= -0.5f)
             {
-                Debug.Log($"{hand} Pulled in");
+                //Debug.Log($"{hand} Pulled in");
                 armState = ArmState.PushedInside; // Right joystick pushed left
             }
         }
