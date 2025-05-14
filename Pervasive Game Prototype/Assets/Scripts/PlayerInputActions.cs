@@ -108,6 +108,42 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Sway Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""8935bdba-9388-44f7-99a4-7f0ea4431120"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Sway Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""801a7ce8-0c88-4384-9cb4-b0ad64020c64"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""67aab39a-f540-4da7-a882-5402b46a547d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""9570460a-8c39-4c60-95c9-39c05e5324c6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -118,127 +154,6 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""00ca640b-d935-4593-8157-c05846ea39b3"",
-                    ""path"": ""Dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""e2062cb9-1b15-46a2-838c-2f8d72a0bdd9"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""8180e8bd-4097-4f4e-ab88-4523101a6ce9"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""320bffee-a40b-4347-ac70-c210eb8bc73a"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1c5327b5-f71c-4f60-99c7-4e737386f1d1"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""d2581a9b-1d11-4566-b27d-b92aff5fabbc"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""2e46982e-44cc-431b-9f0b-c11910bf467a"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""fcfe95b8-67b9-4526-84b5-5d0bc98d6400"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""77bff152-3580-4b21-b6de-dcd0c7e41164"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1635d3fe-58b6-4ba9-a4e2-f4b964f6b5c8"",
-                    ""path"": ""<XRController>/{Primary2DAxis}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Left Hand"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""3ea4d645-4504-4529-b061-ab81934c3752"",
-                    ""path"": ""<Joystick>/stick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
                     ""action"": ""Left Hand"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -256,23 +171,45 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8c8e490b-c610-4785-884f-f04217b23ca4"",
-                    ""path"": ""<Pointer>/delta"",
+                    ""id"": ""45a5020a-b8bf-40dc-9bb1-f738def22fc7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;Touch"",
-                    ""action"": ""Right Hand"",
+                    ""groups"": """",
+                    ""action"": ""Sway Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""3e5f5442-8668-4b27-a940-df99bad7e831"",
-                    ""path"": ""<Joystick>/{Hatswitch}"",
+                    ""id"": ""b97a5c3e-1f66-47d7-9d87-1c8cff767eb5"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Right Hand"",
+                    ""groups"": """",
+                    ""action"": ""Sway Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f53813d1-2a67-4697-802c-0b1690cf034a"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Left Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4d1e6372-1c5b-4dcb-90ab-a1ada6d87969"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -346,6 +283,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_LeftHand = m_Player.FindAction("Left Hand", throwIfNotFound: true);
         m_Player_RightHand = m_Player.FindAction("Right Hand", throwIfNotFound: true);
+        m_Player_SwayLeft = m_Player.FindAction("Sway Left", throwIfNotFound: true);
+        m_Player_SwayRight = m_Player.FindAction("Sway Right", throwIfNotFound: true);
+        m_Player_LeftAim = m_Player.FindAction("Left Aim", throwIfNotFound: true);
+        m_Player_RightAim = m_Player.FindAction("Right Aim", throwIfNotFound: true);
     }
 
     ~@PlayerInputActions()
@@ -428,6 +369,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_LeftHand;
     private readonly InputAction m_Player_RightHand;
+    private readonly InputAction m_Player_SwayLeft;
+    private readonly InputAction m_Player_SwayRight;
+    private readonly InputAction m_Player_LeftAim;
+    private readonly InputAction m_Player_RightAim;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -447,6 +392,22 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/RightHand".
         /// </summary>
         public InputAction @RightHand => m_Wrapper.m_Player_RightHand;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SwayLeft".
+        /// </summary>
+        public InputAction @SwayLeft => m_Wrapper.m_Player_SwayLeft;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/SwayRight".
+        /// </summary>
+        public InputAction @SwayRight => m_Wrapper.m_Player_SwayRight;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/LeftAim".
+        /// </summary>
+        public InputAction @LeftAim => m_Wrapper.m_Player_LeftAim;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/RightAim".
+        /// </summary>
+        public InputAction @RightAim => m_Wrapper.m_Player_RightAim;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -479,6 +440,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @RightHand.started += instance.OnRightHand;
             @RightHand.performed += instance.OnRightHand;
             @RightHand.canceled += instance.OnRightHand;
+            @SwayLeft.started += instance.OnSwayLeft;
+            @SwayLeft.performed += instance.OnSwayLeft;
+            @SwayLeft.canceled += instance.OnSwayLeft;
+            @SwayRight.started += instance.OnSwayRight;
+            @SwayRight.performed += instance.OnSwayRight;
+            @SwayRight.canceled += instance.OnSwayRight;
+            @LeftAim.started += instance.OnLeftAim;
+            @LeftAim.performed += instance.OnLeftAim;
+            @LeftAim.canceled += instance.OnLeftAim;
+            @RightAim.started += instance.OnRightAim;
+            @RightAim.performed += instance.OnRightAim;
+            @RightAim.canceled += instance.OnRightAim;
         }
 
         /// <summary>
@@ -496,6 +469,18 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @RightHand.started -= instance.OnRightHand;
             @RightHand.performed -= instance.OnRightHand;
             @RightHand.canceled -= instance.OnRightHand;
+            @SwayLeft.started -= instance.OnSwayLeft;
+            @SwayLeft.performed -= instance.OnSwayLeft;
+            @SwayLeft.canceled -= instance.OnSwayLeft;
+            @SwayRight.started -= instance.OnSwayRight;
+            @SwayRight.performed -= instance.OnSwayRight;
+            @SwayRight.canceled -= instance.OnSwayRight;
+            @LeftAim.started -= instance.OnLeftAim;
+            @LeftAim.performed -= instance.OnLeftAim;
+            @LeftAim.canceled -= instance.OnLeftAim;
+            @RightAim.started -= instance.OnRightAim;
+            @RightAim.performed -= instance.OnRightAim;
+            @RightAim.canceled -= instance.OnRightAim;
         }
 
         /// <summary>
@@ -615,5 +600,33 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRightHand(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Sway Left" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwayLeft(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Sway Right" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSwayRight(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Left Aim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftAim(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Right Aim" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRightAim(InputAction.CallbackContext context);
     }
 }
