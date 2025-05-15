@@ -64,7 +64,7 @@ public class PlayerControl : MonoBehaviour
         //Neutral Hands
         if (inputVector.x < neutralZone && inputVector.x > -neutralZone && inputVector.y < neutralZone && inputVector.y > -neutralZone && armState != ArmState.Neutral)
         {
-            Debug.Log($"{hand} Neutral");
+            //Debug.Log($"{hand} Neutral");
             armState = ArmState.Neutral; // Reset state after block
         }
 
@@ -225,25 +225,153 @@ public class PlayerControl : MonoBehaviour
 
     private void ProcessPunch(ref ArmState armState, string hand)
     {
-        if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
+        
+        // Neutral Body
+        if (bodyState == BodyState.Neutral)
         {
-            Debug.Log($"{hand} Straight");
-            armState = ArmState.Idle;
+            // Neutral Aim                  or  Aim opposite
+            if ( aimState == AimState.Neutral || ( aimState == AimState.AimLeft && hand == "Right Hand" ) || ( aimState == AimState.AimRight && hand == "Left Hand" ) )
+            {
+                
+                // Straight
+                if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
+                {
+                    Debug.Log($"{hand} Straight");
+                    armState = ArmState.Idle;
+                }
+                
+                // Outside
+                else if (armState == ArmState.PushedOutside)
+                {
+                    Debug.Log($"{hand} Hook");
+                    armState = ArmState.Idle;
+                }
+                
+                // Inside
+                else if (armState == ArmState.PushedInside)
+                {
+                    Debug.Log($"{hand} Uppercut");
+                    armState = ArmState.Idle;
+                }
+                
+                // Jab
+                else if (armState == ArmState.Neutral)
+                {
+                    Debug.Log($"{hand} Punch/Jab");
+                    armState = ArmState.Idle;
+                }
+            }
+            
+            // While Aiming
+            if ((aimState == AimState.AimLeft && hand == "Left Hand") || (aimState == AimState.AimRight && hand == "Right Hand"))
+            {
+                
+                // Straight
+                if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
+                {
+                    Debug.Log($"{hand} Jumping Uppercut");
+                    armState = ArmState.Idle;
+                }
+                
+                // Outside
+                else if (armState == ArmState.PushedOutside)
+                {
+                    Debug.Log($"{hand} Kidney Shot");
+                    armState = ArmState.Idle;
+                }
+                
+                //Inside
+                else if (armState == ArmState.PushedInside)
+                {
+                    Debug.Log($"{hand} Mid-Cross");
+                    armState = ArmState.Idle;
+                }
+                
+                //Jab
+                else if (armState == ArmState.Neutral)
+                {
+                    Debug.Log($"{hand} Gut Shot");
+                    armState = ArmState.Idle;
+                }
+            }
+            
         }
-        else if (armState == ArmState.PushedOutside)
+        
+        //     Weave Body Left                  AND Left hand           AND Left Aim Neutral             ||   Weave Body Right AND Right hand
+        if ( ( bodyState == BodyState.WeaveLeft && hand == "Left Hand" && aimState != AimState.AimLeft ) || ( bodyState == BodyState.WeaveRight && hand == "Right Hand" && aimState != AimState.AimRight ) )
         {
-            Debug.Log($"{hand} Hook");
-            armState = ArmState.Idle;
+            // Outside
+            if (armState == ArmState.PushedOutside)
+            {
+                Debug.Log($"{hand} Defensive Hook");
+                armState = ArmState.Idle;
+            }
+            
+            // Straight
+            if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
+            {
+                Debug.Log($"{hand} Big Hook");
+                armState = ArmState.Idle;
+            }
         }
-        else if (armState == ArmState.PushedInside)
+        
+        //      Weave Body Left AND Right hand                            ||   Weave Body Right AND Left hand
+        else if ( ( bodyState == BodyState.WeaveLeft && hand == "Right Hand" && aimState != AimState.AimRight ) || ( bodyState == BodyState.WeaveRight && hand == "Left Hand" && aimState != AimState.AimLeft ) )
         {
-            Debug.Log($"{hand} Uppercut");
-            armState = ArmState.Idle;
+            // Outside
+            if (armState == ArmState.PushedOutside)
+            {
+                Debug.Log($"{hand} Defensive Overhand");
+                armState = ArmState.Idle;
+            }
         }
-        else if (armState == ArmState.Neutral)
+        
+        //     Weave Body Left                  AND Left hand           AND Left Aim Neutral             ||   Weave Body Right AND Right hand
+        else if ( ( bodyState == BodyState.WeaveLeft && hand == "Left Hand" && aimState == AimState.AimLeft ) || ( bodyState == BodyState.WeaveRight && hand == "Right Hand" && aimState == AimState.AimRight ) )
         {
-            Debug.Log($"{hand} Punch/Jab");
-            armState = ArmState.Idle;
+            // Outside
+            if (armState == ArmState.PushedOutside)
+            {
+                Debug.Log($"{hand} Defensive Kidney Punch");
+                armState = ArmState.Idle;
+            }
+        }
+        
+        // Body Duck
+        if (bodyState == BodyState.Duck)
+        {
+            // Neutral Aim                  or  Aim opposite
+            if ( aimState == AimState.Neutral || ( aimState == AimState.AimLeft && hand == "Right Hand" ) || ( aimState == AimState.AimRight && hand == "Left Hand" ) )
+            {
+                
+                // Straight
+                if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
+                {
+                    Debug.Log($"{hand} Heavy Uppercut");
+                    armState = ArmState.Idle;
+                }
+                
+                // Outside
+                else if (armState == ArmState.PushedOutside)
+                {
+                    Debug.Log($"{hand} Mid Hook");
+                    armState = ArmState.Idle;
+                }
+                
+                // Inside
+                else if (armState == ArmState.PushedInside)
+                {
+                    Debug.Log($"{hand} Mid Cross");
+                    armState = ArmState.Idle;
+                }
+                
+                // Jab
+                else if (armState == ArmState.Neutral)
+                {
+                    Debug.Log($"{hand} Mid Shot");
+                    armState = ArmState.Idle;
+                }
+            }
         }
     }
 }
