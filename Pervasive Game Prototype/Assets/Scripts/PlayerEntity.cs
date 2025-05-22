@@ -4,6 +4,8 @@ public class PlayerEntity : GameEntity
 {
     private PlayerControl controls;
 
+    public GameObject Opponent;
+
     public HealthBar healthBar;
 
     void Start()

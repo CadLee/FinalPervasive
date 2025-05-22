@@ -4,19 +4,27 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 
+public enum ArmState { Neutral, PulledBack, PushedOutside, PushedInside, Block, Idle }
+public enum BodyState { Neutral, WeaveLeft, WeaveRight, Sway , Duck}
+public enum AimState { Neutral, AimLeft, AimRight}
+
+public enum Punch { Jab, Straight, Hook, Uppercut, JumpingUppercut, KidneyShot, MidCross, GutShot, DefHook, DefBigHook, DefOverhand, DefKidneyShot, HeavyUppercut, MidHook}
+
+//To do: Sent these punches to the opponent and then within opponent they will process how they take the damage,
+// Same will be done on the 
+
 public class PlayerControl : MonoBehaviour
 {
     private PlayerInputActions controls;
     private PlayerEntity playerEntity;
+    
+    public OpponentEntity opponentEntity;
 
-    private enum ArmState { Neutral, PulledBack, PushedOutside, PushedInside, Block, Idle }
     private ArmState leftArmState = ArmState.Neutral;
     private ArmState rightArmState = ArmState.Neutral;
 
-    private enum BodyState { Neutral, WeaveLeft, WeaveRight, Sway , Duck}
     private BodyState bodyState = BodyState.Neutral;
 
-    private enum AimState { Neutral, AimLeft, AimRight}
     private AimState aimState = AimState.Neutral;
 
     private void Awake()
@@ -62,7 +70,7 @@ public class PlayerControl : MonoBehaviour
 
     private void HandleArmInput(Vector2 inputVector, string hand, ref ArmState armState, bool isLeftJoystick)
     {
-        float neutralZone = 0.1f;
+        float neutralZone = 0.1f; // Magnitude of the neutral zone
 
         //Neutral Hands
         if (inputVector.x < neutralZone && inputVector.x > -neutralZone && inputVector.y < neutralZone && inputVector.y > -neutralZone && armState != ArmState.Neutral)
@@ -352,6 +360,7 @@ public class PlayerControl : MonoBehaviour
                 {
                     Debug.Log($"{hand} Heavy Uppercut");
                     armState = ArmState.Idle;
+                    bodyState = BodyState.Neutral;
                 }
                 
                 // Outside
@@ -371,7 +380,7 @@ public class PlayerControl : MonoBehaviour
                 // Jab
                 else if (armState == ArmState.Neutral)
                 {
-                    Debug.Log($"{hand} Mid Shot");
+                    Debug.Log($"{hand} Gut Shot");
                     armState = ArmState.Idle;
                 }
             }
