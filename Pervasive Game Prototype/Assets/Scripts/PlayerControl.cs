@@ -7,6 +7,7 @@ using UnityEngine.XR;
 public class PlayerControl : MonoBehaviour
 {
     private PlayerInputActions controls;
+    private PlayerEntity playerEntity;
 
     private enum ArmState { Neutral, PulledBack, PushedOutside, PushedInside, Block, Idle }
     private ArmState leftArmState = ArmState.Neutral;
@@ -21,6 +22,8 @@ public class PlayerControl : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerInputActions();
+
+        playerEntity = GetComponent<PlayerEntity>();
 
         controls.Player.Enable();
 
