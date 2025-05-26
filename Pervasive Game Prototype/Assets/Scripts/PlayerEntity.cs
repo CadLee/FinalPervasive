@@ -21,7 +21,12 @@ public class PlayerEntity : GameEntity
 
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            health -= 10; // Example damage
+            healthBar.UpdateHealth(health, maxHP);
+            Debug.Log("Player took damage, current health: " + health);
+        }   
     }
 
     public override void death()

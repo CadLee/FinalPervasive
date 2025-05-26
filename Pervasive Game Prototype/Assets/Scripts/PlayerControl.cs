@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,7 +9,7 @@ public enum ArmState { Neutral, PulledBack, PushedOutside, PushedInside, Block, 
 public enum BodyState { Neutral, WeaveLeft, WeaveRight, Sway , Duck}
 public enum AimState { Neutral, AimLeft, AimRight}
 
-public enum Punch { Jab, Straight, Hook, Uppercut, JumpingUppercut, KidneyShot, MidCross, GutShot, DefHook, DefBigHook, DefOverhand, DefKidneyShot, HeavyUppercut, MidHook}
+public enum Punch { Jab, Straight, Hook, Cross, Uppercut, JumpingUppercut, KidneyShot, MidCross, GutShot, DefHook, DefBigHook, DefOverhand, DefKidneyShot, HeavyUppercut, MidHook}
 
 //To do: Sent these punches to the opponent and then within opponent they will process how they take the damage,
 // Same will be done on the 
@@ -18,7 +19,8 @@ public class PlayerControl : MonoBehaviour
     private PlayerInputActions controls;
     private PlayerEntity playerEntity;
     
-    public OpponentEntity opponentEntity;
+    public GameObject opponentObject;
+    private OpponentEntity opponentEntity;
 
     private ArmState leftArmState = ArmState.Neutral;
     private ArmState rightArmState = ArmState.Neutral;
@@ -27,11 +29,15 @@ public class PlayerControl : MonoBehaviour
 
     private AimState aimState = AimState.Neutral;
 
+    public TextMeshProUGUI LTooltip;
+    public TextMeshProUGUI RTooltip;
+
     private void Awake()
     {
         controls = new PlayerInputActions();
 
         playerEntity = GetComponent<PlayerEntity>();
+        opponentEntity = opponentObject.GetComponent<OpponentEntity>();
 
         controls.Player.Enable();
 
@@ -52,6 +58,9 @@ public class PlayerControl : MonoBehaviour
     {
         LeftHand_performed();
         RightHand_performed();
+
+        TooltipLeft();
+        TooltipRight();
     }
 
     private void LeftHand_performed()
@@ -247,28 +256,28 @@ public class PlayerControl : MonoBehaviour
                 // Straight
                 if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
                 {
-                    Debug.Log($"{hand} Straight");
+                    opponentEntity.ProcessHit(Punch.Straight, hand);
                     armState = ArmState.Idle;
                 }
                 
                 // Outside
                 else if (armState == ArmState.PushedOutside)
                 {
-                    Debug.Log($"{hand} Hook");
+                    opponentEntity.ProcessHit(Punch.Hook, hand);
                     armState = ArmState.Idle;
                 }
                 
                 // Inside
                 else if (armState == ArmState.PushedInside)
                 {
-                    Debug.Log($"{hand} Uppercut");
+                    opponentEntity.ProcessHit(Punch.Cross, hand);
                     armState = ArmState.Idle;
                 }
                 
                 // Jab
                 else if (armState == ArmState.Neutral)
                 {
-                    Debug.Log($"{hand} Punch/Jab");
+                    opponentEntity.ProcessHit(Punch.Jab, hand);
                     armState = ArmState.Idle;
                 }
             }
@@ -280,28 +289,28 @@ public class PlayerControl : MonoBehaviour
                 // Straight
                 if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
                 {
-                    Debug.Log($"{hand} Jumping Uppercut");
+                    opponentEntity.ProcessHit(Punch.Uppercut, hand);
                     armState = ArmState.Idle;
                 }
                 
                 // Outside
                 else if (armState == ArmState.PushedOutside)
                 {
-                    Debug.Log($"{hand} Kidney Shot");
+                    opponentEntity.ProcessHit(Punch.KidneyShot, hand);
                     armState = ArmState.Idle;
                 }
                 
                 //Inside
                 else if (armState == ArmState.PushedInside)
                 {
-                    Debug.Log($"{hand} Mid-Cross");
+                    opponentEntity.ProcessHit(Punch.MidCross, hand);
                     armState = ArmState.Idle;
                 }
                 
                 //Jab
                 else if (armState == ArmState.Neutral)
                 {
-                    Debug.Log($"{hand} Gut Shot");
+                    opponentEntity.ProcessHit(Punch.GutShot, hand);
                     armState = ArmState.Idle;
                 }
             }
@@ -314,14 +323,14 @@ public class PlayerControl : MonoBehaviour
             // Outside
             if (armState == ArmState.PushedOutside)
             {
-                Debug.Log($"{hand} Defensive Hook");
+                opponentEntity.ProcessHit(Punch.DefHook, hand);
                 armState = ArmState.Idle;
             }
             
             // Straight
             if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
             {
-                Debug.Log($"{hand} Big Hook");
+                opponentEntity.ProcessHit(Punch.DefBigHook, hand);
                 armState = ArmState.Idle;
             }
         }
@@ -332,7 +341,7 @@ public class PlayerControl : MonoBehaviour
             // Outside
             if (armState == ArmState.PushedOutside)
             {
-                Debug.Log($"{hand} Defensive Overhand");
+                opponentEntity.ProcessHit(Punch.DefOverhand, hand);
                 armState = ArmState.Idle;
             }
         }
@@ -343,7 +352,7 @@ public class PlayerControl : MonoBehaviour
             // Outside
             if (armState == ArmState.PushedOutside)
             {
-                Debug.Log($"{hand} Defensive Kidney Punch");
+                opponentEntity.ProcessHit(Punch.DefKidneyShot, hand);
                 armState = ArmState.Idle;
             }
         }
@@ -358,7 +367,7 @@ public class PlayerControl : MonoBehaviour
                 // Straight
                 if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
                 {
-                    Debug.Log($"{hand} Heavy Uppercut");
+                    opponentEntity.ProcessHit(Punch.HeavyUppercut, hand);
                     armState = ArmState.Idle;
                     bodyState = BodyState.Neutral;
                 }
@@ -366,24 +375,84 @@ public class PlayerControl : MonoBehaviour
                 // Outside
                 else if (armState == ArmState.PushedOutside)
                 {
-                    Debug.Log($"{hand} Mid Hook");
+                    opponentEntity.ProcessHit(Punch.MidHook, hand);
                     armState = ArmState.Idle;
                 }
                 
                 // Inside
                 else if (armState == ArmState.PushedInside)
                 {
-                    Debug.Log($"{hand} Mid Cross");
+                    opponentEntity.ProcessHit(Punch.MidCross, hand);
                     armState = ArmState.Idle;
                 }
                 
                 // Jab
                 else if (armState == ArmState.Neutral)
                 {
-                    Debug.Log($"{hand} Gut Shot");
+                    opponentEntity.ProcessHit(Punch.GutShot, hand);
                     armState = ArmState.Idle;
                 }
             }
         }
+    }
+
+    public void TooltipLeft() 
+    {
+        if (bodyState == BodyState.Neutral) 
+        {
+            if (aimState == AimState.Neutral || aimState == AimState.AimRight)
+            {
+                LTooltip.text = "JAB = FLICK UP\nSTRAIGHT = DOWN + UP\nHOOK = LEFT + UP\nCROSS = RIGHT+UP";
+                LTooltip.text += "\n\n AIM BODY = LT(HOLD)";
+            }
+            else if (aimState == AimState.AimLeft)
+            {
+                LTooltip.text = "GUTSHOT = FLICK UP\nUPPERCUT = DOWN + UP\nKIDNEY SHOT = LEFT + UP\nMIDCROSS = RIGHT+UP";
+                LTooltip.text += "\n\n AIM NEUTRAL = RELEASE LT";
+            }
+
+            LTooltip.text += "\n\nWEAVE LEFT = HOLD LB\nWEAVE RIGHT = HOLD RB\nSWAY = HOLD (LB + RB)";
+        }
+        else if (bodyState == BodyState.WeaveLeft)
+        {
+            if(aimState == AimState.Neutral || aimState == AimState.AimRight)
+            {
+                LTooltip.text = "DEF HOOK = LEFT + UP\nDEF BIG HOOK = DOWN + LEFT + UP";
+            }
+            else if (aimState == AimState.AimLeft)
+            {
+                LTooltip.text = "DEF KIDNEY SHOT = LEFT + UP";
+            }
+
+            LTooltip.text += "\n\nNEUTRAL STANCE = RELEASE LB\nSWAY = RB(HOLD)";
+        }
+        else if (bodyState == BodyState.WeaveRight)
+        {
+            if(aimState == AimState.Neutral || aimState == AimState.AimRight)
+            {
+                LTooltip.text = "DEF OVERHAND = LEFT + UP";
+            }
+            else if (aimState == AimState.AimLeft)
+            {
+                LTooltip.text = "";
+                LTooltip.text += "\n\n AIM NEUTRAL = RELEASE LT";
+            }
+            LTooltip.text += "\n\nNEUTRAL STANCE = RELEASE RB\nSWAY = LB(HOLD)";
+        }
+        else if (bodyState == BodyState.Duck)
+        {
+            LTooltip.text = "GUT SHOT = FLICK UP\nMID HOOK = LEFT + UP\nMID CROSS = RIGHT + UP\nHEAVY UPPERCUT = DOWN+UP";
+
+            LTooltip.text += "\n\nSWAY = HOLD LB + RB\nNEUTRAL STANCE = RELEASE LT + RT";
+        }
+        else if (bodyState == BodyState.Sway)
+        {
+            LTooltip.text = "DUCK = HOLD LT + RT\nNEUTRAL STANCE = RELEASE LB + RB";
+        }
+    }
+
+    public void TooltipRight()
+    {
+
     }
 }
