@@ -7,6 +7,7 @@ public class PlayerEntity : GameEntity
     public GameObject Opponent;
 
     public HealthBar healthBar;
+    public StaminaBar staminaBar;
 
     void Start()
     {

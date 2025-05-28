@@ -453,6 +453,56 @@ public class PlayerControl : MonoBehaviour
 
     public void TooltipRight()
     {
+        if (bodyState == BodyState.Neutral)
+        {
+            if (aimState == AimState.Neutral || aimState == AimState.AimLeft)
+            {
+                RTooltip.text = "JAB = FLICK UP\nSTRAIGHT = DOWN + UP\nHOOK = RIGHT + UP\nCROSS = LEFT+UP";
+                RTooltip.text += "\n\n AIM BODY = RT(HOLD)";
+            }
+            else if (aimState == AimState.AimRight)
+            {
+                RTooltip.text = "GUTSHOT = FLICK UP\nUPPERCUT = DOWN + UP\nKIDNEY SHOT = RIGHT + UP\nMIDCROSS = LEFT+UP";
+                RTooltip.text += "\n\n AIM NEUTRAL = RELEASE RT";
+            }
 
+            RTooltip.text += "\n\nWEAVE RIGHT = HOLD RB\nWEAVE LEFT = HOLD LB\nSWAY = HOLD (LB + RB)";
+        }
+        else if (bodyState == BodyState.WeaveRight)
+        {
+            if (aimState == AimState.Neutral || aimState == AimState.AimLeft)
+            {
+                RTooltip.text = "DEF HOOK = RIGHT + UP\nDEF BIG HOOK = DOWN + RIGHT + UP";
+            }
+            else if (aimState == AimState.AimRight)
+            {
+                RTooltip.text = "DEF KIDNEY SHOT = RIGHT + UP";
+            }
+
+            RTooltip.text += "\n\nNEUTRAL STANCE = RELEASE RB\nSWAY = LB(HOLD)";
+        }
+        else if (bodyState == BodyState.WeaveLeft)
+        {
+            if (aimState == AimState.Neutral || aimState == AimState.AimLeft)
+            {
+                RTooltip.text = "DEF OVERHAND = RIGHT + UP";
+            }
+            else if (aimState == AimState.AimRight)
+            {
+                RTooltip.text = "";
+                RTooltip.text += "\n\n AIM NEUTRAL = RELEASE RT";
+            }
+            RTooltip.text += "\n\nNEUTRAL STANCE = RELEASE LB\nSWAY = RB(HOLD)";
+        }
+        else if (bodyState == BodyState.Duck)
+        {
+            RTooltip.text = "GUT SHOT = FLICK UP\nMID HOOK = RIGHT + UP\nMID CROSS = LEFT + UP\nHEAVY UPPERCUT = DOWN+UP";
+
+            RTooltip.text += "\n\nSWAY = HOLD LB + RB\nNEUTRAL STANCE = RELEASE LT + RT";
+        }
+        else if (bodyState == BodyState.Sway)
+        {
+            RTooltip.text = "DUCK = HOLD LT + RT\nNEUTRAL STANCE = RELEASE LB + RB";
+        }
     }
 }
