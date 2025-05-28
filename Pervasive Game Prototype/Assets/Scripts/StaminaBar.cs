@@ -1,16 +1,18 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Slider slider;
 
-    // Update is called once per frame
-    void Update()
+    public TextMeshProUGUI staminaBarValueText;
+
+    public void UpdateStamina(int currentStamina, int maxSTA)
     {
-        
+        staminaBarValueText.text = currentStamina.ToString() + "/" + maxSTA.ToString();
+
+        slider.maxValue = maxSTA;
+        slider.value = currentStamina;
     }
 }

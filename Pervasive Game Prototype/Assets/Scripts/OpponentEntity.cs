@@ -17,6 +17,9 @@ public class OpponentEntity : GameEntity
     private BodyState bodyState = BodyState.Neutral;
     //private AimState aimState = AimState.Neutral;
 
+    public HealthBar healthBar;
+    public StaminaBar staminaBar;
+
     void Start()
     {
         health = maxHP;
@@ -24,8 +27,9 @@ public class OpponentEntity : GameEntity
         isDead = false;
 
         player = GameObject.FindWithTag("Player").GetComponent<PlayerEntity>();
-        playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();   
+        playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
 
+        healthBar.UpdateHealth(health, maxHP);
     }
 
     void Update()
@@ -437,6 +441,8 @@ public class OpponentEntity : GameEntity
                 }
             }
         }
+
+        healthBar.UpdateHealth(health, maxHP);
     }
 
     public override void death()
