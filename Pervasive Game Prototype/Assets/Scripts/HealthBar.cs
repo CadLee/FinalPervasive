@@ -8,9 +8,9 @@ public class HealthBar : MonoBehaviour
 
     public TextMeshProUGUI healthBarValueText;
 
-    public void UpdateHealth(int currentHealth, int maxHP)
+    public void UpdateHealth(float currentHealth, int maxHP)
     {
-        healthBarValueText.text = currentHealth.ToString() + "/" + maxHP.ToString();
+        healthBarValueText.text = ((int)currentHealth).ToString() + "/" + maxHP.ToString();
 
         slider.maxValue = maxHP;
         slider.value = currentHealth;

@@ -4,12 +4,13 @@ public abstract class  GameEntity : MonoBehaviour
 {
 
     [SerializeField] public int maxHP;
-    protected int health;
+    protected float health;
 
     [SerializeField] public int maxStamina;
-    protected int stamina;
+    protected float stamina;
 
     [SerializeField] public int staminaRegen;
+    [SerializeField] public float staminaDrain;
     protected bool isDead;
 
     void Start()
@@ -21,15 +22,23 @@ public abstract class  GameEntity : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (stamina <= maxStamina)
+        if (stamina < maxStamina)
         {
-            stamina += staminaRegen / 100;
+            stamina += staminaRegen / 100f;
         }
 
         if (health <= 0)
         {
             death();
             isDead = true;
+        }
+    }
+
+    public void RegenStamina()
+    {
+        if (stamina < maxStamina)
+        {
+            stamina += staminaRegen / 100f;
         }
     }
 

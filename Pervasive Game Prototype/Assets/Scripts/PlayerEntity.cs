@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class PlayerEntity : GameEntity
 {
@@ -18,6 +19,8 @@ public class PlayerEntity : GameEntity
         isDead = false;
 
         healthBar.UpdateHealth(health, maxHP);
+        staminaBar.UpdateStamina(stamina, maxStamina);
+
     }
 
     void Update()
@@ -27,11 +30,53 @@ public class PlayerEntity : GameEntity
             health -= 10; // Example damage
             healthBar.UpdateHealth(health, maxHP);
             Debug.Log("Player took damage, current health: " + health);
-        }   
+        }
+
+
+    }
+
+    void FixedUpdate()
+    {
+        if (health <= 0)
+        {
+            death();
+            isDead = true;
+        }
+
+        if (
+            (controls.GetArmState(false) == ArmState.Neutral&& controls.GetArmState(true) == ArmState.Neutral)
+            &&  controls.GetBodyState() == BodyState.Neutral
+            ) 
+        {
+            RegenStamina();
+        }
+
+        staminaBar.UpdateStamina(stamina, maxStamina);
     }
 
     public override void death()
     {
         throw new System.NotImplementedException();
+    }
+
+    public float Stamina
+    {
+        get 
+        { 
+            return stamina; 
+        }
+        set
+        {
+            stamina = value;
+            staminaBar.UpdateStamina(stamina, maxStamina);
+        }
+    }
+
+    public float StaminaDrain
+    {
+        get
+        {
+            return staminaDrain;
+        }
     }
 }

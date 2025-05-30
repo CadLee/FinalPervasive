@@ -5,7 +5,7 @@ public class OpponentEntity : GameEntity
     private PlayerEntity player;
     private PlayerControl playerControl;
 
-    private enum OpponentType { Still }
+    private enum OpponentType { Still, Blocking }
     [SerializeField] OpponentType opponentType;
 
     [SerializeField] int damageMult;
@@ -30,6 +30,7 @@ public class OpponentEntity : GameEntity
         playerControl = GameObject.FindWithTag("Player").GetComponent<PlayerControl>();
 
         healthBar.UpdateHealth(health, maxHP);
+        staminaBar.UpdateStamina(stamina, maxStamina);
     }
 
     void Update()
@@ -220,12 +221,12 @@ public class OpponentEntity : GameEntity
                 if (leftArmState == ArmState.Block)
                 {
                     Debug.Log("Opponent blocked a Heavy Uppercut from the left hand");
-                    damage(1 * damageMult);
+                    damage(2 * damageMult);
                 }
                 else
                 {
                     Debug.Log("Opponent took a Heavy Uppercut from the left hand");
-                    damage(10);
+                    damage(10 * damageMult);
                 }
             }
             else if (punch == Punch.MidHook)
@@ -238,7 +239,7 @@ public class OpponentEntity : GameEntity
                 else
                 {
                     Debug.Log("Opponent took a defensive Mid Hook from the left hand");
-                    damage(10);
+                    damage(10 * damageMult);
                 }
             }
 
@@ -411,7 +412,7 @@ public class OpponentEntity : GameEntity
                 else
                 {
                     Debug.Log("Opponent took a defensive kidney shot from the right hand");
-                    damage(10);
+                    damage(10 * damageMult);
                 }
             }
             else if (punch == Punch.HeavyUppercut)
@@ -419,12 +420,12 @@ public class OpponentEntity : GameEntity
                 if (rightArmState == ArmState.Block)
                 {
                     Debug.Log("Opponent blocked a Heavy Uppercut from the right hand");
-                    damage(1 * damageMult);
+                    damage(2 * damageMult);
                 }
                 else
                 {
                     Debug.Log("Opponent took a Heavy Uppercut from the right hand");
-                    damage(10);
+                    damage(20 * damageMult);
                 }
             }
             else if (punch == Punch.MidHook)
@@ -437,7 +438,7 @@ public class OpponentEntity : GameEntity
                 else
                 {
                     Debug.Log("Opponent took a defensive Mid Hook from the right hand");
-                    damage(10);
+                    damage(10 * damageMult);
                 }
             }
         }

@@ -8,9 +8,9 @@ public class StaminaBar : MonoBehaviour
 
     public TextMeshProUGUI staminaBarValueText;
 
-    public void UpdateStamina(int currentStamina, int maxSTA)
+    public void UpdateStamina(float currentStamina, int maxSTA)
     {
-        staminaBarValueText.text = currentStamina.ToString() + "/" + maxSTA.ToString();
+        staminaBarValueText.text = ((int)currentStamina).ToString() + "/" + maxSTA.ToString();
 
         slider.maxValue = maxSTA;
         slider.value = currentStamina;
