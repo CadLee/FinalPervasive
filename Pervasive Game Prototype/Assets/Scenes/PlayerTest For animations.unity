@@ -3707,6 +3707,7 @@ MonoBehaviour:
   maxHP: 2000
   maxStamina: 1
   staminaRegen: 0
+  staminaDrain: 0
   opponentType: 0
   damageMult: 1
   healthBar: {fileID: 351127864}
@@ -4070,6 +4071,7 @@ MonoBehaviour:
   maxHP: 100
   maxStamina: 100
   staminaRegen: 5
+  staminaDrain: 0
   Opponent: {fileID: 1643545191}
   healthBar: {fileID: 1360145230}
   staminaBar: {fileID: 1699645182}
