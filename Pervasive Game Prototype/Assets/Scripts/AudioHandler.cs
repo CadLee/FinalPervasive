@@ -21,12 +21,17 @@ public class AudioHandler : MonoBehaviour
     private float targetTrainingVolume;
 
     private bool trainingMode = true;
+    private bool muteBool = false;
+
 
     void Start()
     {
         AudioMixer.GetFloat("NikaVolume", out currentNikaVolume);
         AudioMixer.GetFloat("EnemyVolume", out currentEnemyVolume);
         AudioMixer.GetFloat("TrainingVolume", out currentTrainingVolume);
+
+        currentNikaVolume = minVolume;
+        currentEnemyVolume = minVolume;
 
         targetNikaVolume = currentNikaVolume;
         targetEnemyVolume = currentEnemyVolume;
@@ -35,6 +40,19 @@ public class AudioHandler : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            muteBool = !muteBool;
+        }
+
+        if(muteBool)
+        {
+            AudioMixer.SetFloat("MusicVolume", -80f);
+        }
+        else
+        {
+            AudioMixer.SetFloat("MusicVolume", 0f);
+        }
 
         if (Input.GetKeyDown(KeyCode.T))
         {

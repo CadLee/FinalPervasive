@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OpponentEntity : GameEntity
 {
@@ -24,6 +25,8 @@ public class OpponentEntity : GameEntity
 
     public Punchsoundeffect soundEffects;
 
+    private bool isBlocking = false;
+
     void Start()
     {
         health = maxHP;
@@ -39,7 +42,51 @@ public class OpponentEntity : GameEntity
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            isBlocking = !isBlocking;
+        }
+
+        if (!isBlocking)
+        {
+            leftArmState = ArmState.Neutral;
+            rightArmState = ArmState.Neutral;
+        }
+        else
+        {
+            leftArmState = ArmState.Block;
+            rightArmState = ArmState.Block;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (leftArmState!=ArmState.Block && rightArmState!=ArmState.Block)
+        {
+            RegenStamina();
+            staminaBar.UpdateStamina(stamina, maxStamina);
+        }
         
+        if(stamina <= 0)
+        {
+            stamina = 0;
+            if (isBlocking)
+            {
+                isBlocking = false;
+                leftArmState = ArmState.Neutral;
+                rightArmState = ArmState.Neutral;
+                Debug.Log("Stamina depleted, blocking disabled.");
+                soundEffects.PlayBonePopSound();
+                soundEffects.PlayKnucklesSound();
+
+            }
+        }
+
+        if (health <= 0)
+        {
+            death();
+            isDead = true;
+        }
     }
 
     public void ProcessHit(Punch punch, string hand)
@@ -480,11 +527,19 @@ public class OpponentEntity : GameEntity
             }
         }
 
+        if (isBlocking)
+        {
+            stamina -= staminaDrain;
+        }
+
+        staminaBar.UpdateStamina(stamina, maxStamina);
         healthBar.UpdateHealth(health, maxHP);
     }
 
     public override void death()
     {
         Debug.Log("Opponent has died.");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Debug.Log("Reloading scene...");
     }
 }

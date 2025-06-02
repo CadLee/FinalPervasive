@@ -112,6 +112,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 13bd5d49ac02ffa48b011b83487a77a2
     name: EnemyVolume
+  - guid: e117dd4572d0beb41872ab5110c171f7
+    name: MusicVolume
   - guid: 19665a6b5665afc4fa289c45babe48ff
     name: NikaVolume
   - guid: 3517690b98fee6d4faf155368f1bb70f

@@ -226,11 +226,13 @@ public class PlayerControl : MonoBehaviour
             {
                 if (hand == "Left")
                 {
+                    BodyAnimator.SetBool("AimL", true);
                     Debug.Log("Aim Left Body");
                     aimState = AimState.AimLeft;
                 }
                 else if (hand == "Right")
                 {
+                    BodyAnimator.SetBool("AimR", true);
                     Debug.Log("Aim Right Body");
                     aimState = AimState.AimRight;
                 }
@@ -241,6 +243,9 @@ public class PlayerControl : MonoBehaviour
             {
                 BodyAnimator.SetTrigger("Duck");
 
+                BodyAnimator.SetBool("AimR", false);
+                BodyAnimator.SetBool("AimL", false);
+
                 aimState = AimState.Neutral;
                 bodyState = BodyState.Duck;
                 Debug.Log("Duck");
@@ -248,6 +253,9 @@ public class PlayerControl : MonoBehaviour
             else if (aimState == AimState.AimRight && hand == "Left" && bodyState == BodyState.Neutral)
             {
                 BodyAnimator.SetTrigger("Duck");
+
+                BodyAnimator.SetBool("AimR", false);
+                BodyAnimator.SetBool("AimL", false);
 
                 aimState = AimState.Neutral;
                 bodyState = BodyState.Duck;
@@ -258,6 +266,9 @@ public class PlayerControl : MonoBehaviour
             else if (bodyState==BodyState.Sway)
             {
                 BodyAnimator.SetTrigger("Duck");
+
+                BodyAnimator.SetBool("AimR", false);
+                BodyAnimator.SetBool("AimL", false);
 
                 aimState = AimState.Neutral;
                 bodyState = BodyState.Duck;
@@ -274,6 +285,8 @@ public class PlayerControl : MonoBehaviour
             {
                 Debug.Log("Stop Aiming");
                 aimState = AimState.Neutral;
+                BodyAnimator.SetBool("AimR", false);
+                BodyAnimator.SetBool("AimL", false);
             }
 
             //Duck to Neutral
@@ -284,6 +297,8 @@ public class PlayerControl : MonoBehaviour
 
                 Debug.Log("Stop Duck");
                 bodyState = BodyState.Neutral;
+                BodyAnimator.SetBool("AimR", false);
+                BodyAnimator.SetBool("AimL", false);
             }
 
         }
@@ -381,6 +396,14 @@ public class PlayerControl : MonoBehaviour
                     // Straight
                     if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 5);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 5);
+                        }
                         opponentEntity.ProcessHit(Punch.Uppercut, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
@@ -389,6 +412,14 @@ public class PlayerControl : MonoBehaviour
                     // Outside
                     else if (armState == ArmState.PushedOutside)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 3);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 3);
+                        }
                         opponentEntity.ProcessHit(Punch.KidneyShot, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
@@ -397,6 +428,14 @@ public class PlayerControl : MonoBehaviour
                     //Inside
                     else if (armState == ArmState.PushedInside)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 2);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 2);
+                        }
                         opponentEntity.ProcessHit(Punch.MidCross, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
@@ -405,6 +444,14 @@ public class PlayerControl : MonoBehaviour
                     //Jab
                     else if (armState == ArmState.Neutral)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 1);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 1);
+                        }
                         opponentEntity.ProcessHit(Punch.GutShot, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
@@ -422,6 +469,14 @@ public class PlayerControl : MonoBehaviour
                 // Outside
                 if (armState == ArmState.PushedOutside)
                 {
+                    if (hand == "Left Hand")
+                    {
+                        BodyAnimator.SetInteger("LeftPunch", 3);
+                    }
+                    else
+                    {
+                        BodyAnimator.SetInteger("RightPunch", 3);
+                    }
                     opponentEntity.ProcessHit(Punch.DefHook, hand);
                     armState = ArmState.Idle;
                     playerEntity.Stamina -= playerEntity.StaminaDrain * 1.5f;
@@ -430,6 +485,14 @@ public class PlayerControl : MonoBehaviour
                 // Straight
                 if (armState == ArmState.PulledBack || armState == ArmState.PulledBack)
                 {
+                    if (hand == "Left Hand")
+                    {
+                        BodyAnimator.SetInteger("LeftPunch", 2);
+                    }
+                    else
+                    {
+                        BodyAnimator.SetInteger("RightPunch", 2);
+                    }
                     opponentEntity.ProcessHit(Punch.DefBigHook, hand);
                     armState = ArmState.Idle;
                     playerEntity.Stamina -= playerEntity.StaminaDrain * 1.5f;
@@ -446,6 +509,14 @@ public class PlayerControl : MonoBehaviour
                 // Outside
                 if (armState == ArmState.PushedOutside)
                 {
+                    if (hand == "Left Hand")
+                    {
+                        BodyAnimator.SetInteger("LeftPunch", 3);
+                    }
+                    else
+                    {
+                        BodyAnimator.SetInteger("RightPunch", 3);
+                    }
                     opponentEntity.ProcessHit(Punch.DefOverhand, hand);
                     armState = ArmState.Idle;
                     playerEntity.Stamina -= playerEntity.StaminaDrain * 1.5f;
@@ -462,6 +533,14 @@ public class PlayerControl : MonoBehaviour
                 // Outside
                 if (armState == ArmState.PushedOutside)
                 {
+                    if (hand == "Left Hand")
+                    {
+                        BodyAnimator.SetInteger("LeftPunch", 3);
+                    }
+                    else
+                    {
+                        BodyAnimator.SetInteger("RightPunch", 3);
+                    }
                     opponentEntity.ProcessHit(Punch.DefKidneyShot, hand);
                     armState = ArmState.Idle;
                     playerEntity.Stamina -= playerEntity.StaminaDrain * 1.5f;
@@ -481,9 +560,21 @@ public class PlayerControl : MonoBehaviour
                     // Straight
                     if ((armState == ArmState.PulledBack || armState == ArmState.PulledBack)&& playerEntity.Stamina > playerEntity.StaminaDrain * 2 )
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 5);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 5);
+                        }
                         opponentEntity.ProcessHit(Punch.HeavyUppercut, hand);
                         armState = ArmState.Idle;
+
                         bodyState = BodyState.Neutral;
+                        BodyAnimator.ResetTrigger("Duck");
+                        BodyAnimator.SetTrigger("Idle");
+
                         playerEntity.Stamina -= playerEntity.StaminaDrain * 2;
 
                     }
@@ -491,6 +582,14 @@ public class PlayerControl : MonoBehaviour
                     // Outside
                     else if (armState == ArmState.PushedOutside)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 3);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 3);
+                        }
                         opponentEntity.ProcessHit(Punch.MidHook, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
@@ -499,6 +598,14 @@ public class PlayerControl : MonoBehaviour
                     // Inside
                     else if (armState == ArmState.PushedInside)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 2);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 2);
+                        }
                         opponentEntity.ProcessHit(Punch.MidCross, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
@@ -508,6 +615,14 @@ public class PlayerControl : MonoBehaviour
                     // Jab
                     else if (armState == ArmState.Neutral)
                     {
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 1);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 1);
+                        }
                         opponentEntity.ProcessHit(Punch.GutShot, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
