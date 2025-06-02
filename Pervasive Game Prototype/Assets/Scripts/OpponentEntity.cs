@@ -22,6 +22,8 @@ public class OpponentEntity : GameEntity
 
     public HitEffects hitEffects;
 
+    public Punchsoundeffect soundEffects;
+
     void Start()
     {
         health = maxHP;
@@ -42,6 +44,9 @@ public class OpponentEntity : GameEntity
 
     public void ProcessHit(Punch punch, string hand)
     {
+
+        soundEffects.PlayPunchSound();
+
         if (bodyState == BodyState.Sway) 
         {
             damage(0); // No damage taken during sway

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ff2c7483941954b8e8733fb522580020
+guid: 3540ff4eb31b5774db3a8c5357fe3cd3
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8
@@ -19,5 +19,5 @@ AudioImporter:
   ambisonic: 0
   3D: 1
   userData: 
-  assetBundleName: punch
-  assetBundleVariant: punch1
+  assetBundleName: 
+  assetBundleVariant: 

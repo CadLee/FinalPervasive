@@ -4,10 +4,10 @@ public abstract class  GameEntity : MonoBehaviour
 {
 
     [SerializeField] public int maxHP;
-    protected float health;
+    public float health;
 
     [SerializeField] public int maxStamina;
-    protected float stamina;
+    public float stamina;
 
     [SerializeField] public int staminaRegen;
     [SerializeField] public float staminaDrain;
