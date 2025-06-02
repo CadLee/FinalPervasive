@@ -88,5 +88,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fecf77c77ca3040f9bf62b4e0e853d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
-  rotationSpeed: 1
+  lifetime: 0.25
+  rotationSpeed: 0.3

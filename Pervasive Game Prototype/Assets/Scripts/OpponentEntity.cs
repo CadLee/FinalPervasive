@@ -20,6 +20,8 @@ public class OpponentEntity : GameEntity
     public HealthBar healthBar;
     public StaminaBar staminaBar;
 
+    public HitEffects hitEffects;
+
     void Start()
     {
         health = maxHP;
@@ -58,6 +60,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a jab from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Straight)
@@ -71,6 +74,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Straight from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Hook)
@@ -84,6 +88,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a hook from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Cross) 
@@ -97,6 +102,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a cross from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Uppercut)
@@ -110,6 +116,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took an Uppercut from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.JumpingUppercut)
@@ -123,6 +130,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Jumping Uppercut from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.KidneyShot)
@@ -136,6 +144,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Kidney Shot from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.MidCross)
@@ -149,6 +158,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Mid Cross from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.GutShot)
@@ -162,6 +172,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Gut Shot from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefHook)
@@ -175,6 +186,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a defensive hook from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefBigHook)
@@ -188,6 +200,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a defensive big hook from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefOverhand)
@@ -201,6 +214,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a defensive overhand from the left hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefKidneyShot)
@@ -214,6 +228,7 @@ public class OpponentEntity : GameEntity
                 {
                     Debug.Log("Opponent took a defensive kidney shot from the left hand");
                     damage(10);
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.HeavyUppercut)
@@ -227,6 +242,7 @@ public class OpponentEntity : GameEntity
                 {
                     Debug.Log("Opponent took a Heavy Uppercut from the left hand");
                     damage(10 * damageMult);
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.MidHook)
@@ -240,6 +256,7 @@ public class OpponentEntity : GameEntity
                 {
                     Debug.Log("Opponent took a defensive Mid Hook from the left hand");
                     damage(10 * damageMult);
+                    hitEffects.PlayHitEffect();
                 }
             }
 
@@ -257,6 +274,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a jab from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Straight)
@@ -270,6 +288,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Straight from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Hook)
@@ -283,6 +302,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a hook from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Cross)
@@ -296,6 +316,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a cross from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.Uppercut)
@@ -309,6 +330,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took an Uppercut from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.JumpingUppercut)
@@ -322,6 +344,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Jumping Uppercut from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.KidneyShot)
@@ -335,6 +358,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Kidney Shot from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.MidCross)
@@ -348,6 +372,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Mid Cross from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.GutShot)
@@ -361,6 +386,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a Gut Shot from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefHook)
@@ -374,6 +400,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a defensive hook from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefBigHook)
@@ -387,6 +414,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a defensive big hook from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefOverhand)
@@ -400,6 +428,7 @@ public class OpponentEntity : GameEntity
                 {
                     damage(10 * damageMult);
                     Debug.Log("Opponent took a defensive overhand from the right hand");
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.DefKidneyShot)
@@ -412,6 +441,7 @@ public class OpponentEntity : GameEntity
                 else
                 {
                     Debug.Log("Opponent took a defensive kidney shot from the right hand");
+                    hitEffects.PlayHitEffect();
                     damage(10 * damageMult);
                 }
             }
@@ -426,6 +456,7 @@ public class OpponentEntity : GameEntity
                 {
                     Debug.Log("Opponent took a Heavy Uppercut from the right hand");
                     damage(20 * damageMult);
+                    hitEffects.PlayHitEffect();
                 }
             }
             else if (punch == Punch.MidHook)
@@ -438,6 +469,7 @@ public class OpponentEntity : GameEntity
                 else
                 {
                     Debug.Log("Opponent took a defensive Mid Hook from the right hand");
+                    hitEffects.PlayHitEffect();
                     damage(10 * damageMult);
                 }
             }

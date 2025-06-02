@@ -7,7 +7,13 @@ public class HitEffects : MonoBehaviour
 
     void Start()
     {
-        Instantiate(hitEffect, this.transform);
+
+    }
+
+    public void PlayHitEffect()
+    {
+        GameObject effect = Instantiate(hitEffect, this.transform);
+        effect.transform.Rotate(effect.transform.forward * Random.Range(0, 360));
     }
 }
 

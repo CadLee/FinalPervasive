@@ -199,6 +199,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 245143020c848443481cb7c1e9dceb45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 71483316}
+    - targetCorrespondingSourceObject: {fileID: 9082921918988003762, guid: 245143020c848443481cb7c1e9dceb45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 731102326}
+    - targetCorrespondingSourceObject: {fileID: -8054879972477603887, guid: 245143020c848443481cb7c1e9dceb45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1503699186}
   m_SourcePrefab: {fileID: 100100000, guid: 245143020c848443481cb7c1e9dceb45, type: 3}
 --- !u!4 &71483248 stripped
 Transform:
@@ -2103,6 +2109,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 659450158}
   m_CullTransparentMesh: 1
+--- !u!1 &731102325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9082921918988003762, guid: 245143020c848443481cb7c1e9dceb45, type: 3}
+  m_PrefabInstance: {fileID: 71483247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &731102326
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 731102325}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 94cd2cbf5d466cc42b3852ea98dffd8d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &795611055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,7 +2830,7 @@ Transform:
   m_GameObject: {fileID: 1245257178}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.288, z: -0.7}
+  m_LocalPosition: {x: 0, y: 1.33, z: -0.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3531,6 +3564,33 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1503699185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8054879972477603887, guid: 245143020c848443481cb7c1e9dceb45, type: 3}
+  m_PrefabInstance: {fileID: 71483247}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1503699186
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1503699185}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3df9b5bc2b0864248936571f21668d01, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1531424834
 GameObject:
   m_ObjectHideFlags: 0
@@ -3720,6 +3780,7 @@ MonoBehaviour:
   damageMult: 1
   healthBar: {fileID: 351127864}
   staminaBar: {fileID: 460819241}
+  hitEffects: {fileID: 0}
 --- !u!1 &1697490210
 GameObject:
   m_ObjectHideFlags: 0
@@ -3950,7 +4011,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977165254}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1cbc7e91488a44c349b95d0bacbe4ec7, type: 3}
   m_Name: 
@@ -4042,6 +4103,9 @@ MonoBehaviour:
   opponentObject: {fileID: 1643545191}
   LTooltip: {fileID: 327146035}
   RTooltip: {fileID: 120984018}
+  LeftHandAnimator: {fileID: 1503699186}
+  RightHandAnimator: {fileID: 731102326}
+  BodyAnimator: {fileID: 1977165259}
 --- !u!95 &1977165259
 Animator:
   serializedVersion: 7
@@ -4052,7 +4116,7 @@ Animator:
   m_GameObject: {fileID: 1977165254}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3df9b5bc2b0864248936571f21668d01, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0f94a63f94bb6da4c9b74bc4a5b46fc1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -32,6 +32,11 @@ public class PlayerControl : MonoBehaviour
     public TextMeshProUGUI LTooltip;
     public TextMeshProUGUI RTooltip;
 
+    //public Animator LeftHandAnimator;
+    //public Animator RightHandAnimator;
+    public Animator BodyAnimator;
+
+
     private void Awake()
     {
         controls = new PlayerInputActions();
@@ -86,6 +91,14 @@ public class PlayerControl : MonoBehaviour
         {
             //Debug.Log($"{hand} Neutral");
             armState = ArmState.Neutral; // Reset state after block
+            if (isLeftJoystick)
+            {
+                BodyAnimator.SetInteger("LeftPunch", 0);
+            }
+            else
+            {
+                BodyAnimator.SetInteger("RightPunch", 0);
+            }
         }
 
         else if (inputVector.y >= -0.8f && inputVector.y <= -0.3f && armState != ArmState.PulledBack)
@@ -97,6 +110,15 @@ public class PlayerControl : MonoBehaviour
         {
             Debug.Log($"{hand} Block");
             armState = ArmState.Block; // Reset state after block
+
+            if(isLeftJoystick)
+            {
+                BodyAnimator.SetInteger("LeftPunch",-1);
+            }
+            else
+            {
+                BodyAnimator.SetInteger("RightPunch", -1);
+            }
         }
 
         else if (isLeftJoystick && (armState == ArmState.Neutral))
@@ -138,11 +160,15 @@ public class PlayerControl : MonoBehaviour
             {
                 if (direction == "Left")
                 {
+                    BodyAnimator.SetTrigger("WeaveL");
+
                     bodyState = BodyState.WeaveLeft;
                     Debug.Log("Weave Left");
                 }
                 else if (direction == "Right")
                 {
+                    BodyAnimator.SetTrigger("WeaveR");
+
                     bodyState = BodyState.WeaveRight;
                     Debug.Log("Weave Right");
                 }
@@ -151,11 +177,15 @@ public class PlayerControl : MonoBehaviour
             //From Weave to Sway
             else if (bodyState == BodyState.WeaveLeft && direction == "Right")
             {
+                BodyAnimator.SetTrigger("Sway");
+
                 bodyState = BodyState.Sway;
                 Debug.Log("Sway");
             }
             else if (bodyState == BodyState.WeaveRight && direction == "Left")
             {
+                BodyAnimator.SetTrigger("Sway");
+
                 bodyState = BodyState.Sway;
                 Debug.Log("Sway");
             }
@@ -163,6 +193,8 @@ public class PlayerControl : MonoBehaviour
             //From Duck to Sway
             else if (bodyState == BodyState.Duck)
             {
+                BodyAnimator.SetTrigger("Sway");
+
                 bodyState = BodyState.Sway;
                 Debug.Log("Sway");
             }
@@ -174,6 +206,11 @@ public class PlayerControl : MonoBehaviour
         {
             if (bodyState == BodyState.WeaveLeft || bodyState == BodyState.WeaveRight || bodyState == BodyState.Sway)
             {
+                BodyAnimator.ResetTrigger("WeaveL");
+                BodyAnimator.ResetTrigger("WeaveR");
+                BodyAnimator.ResetTrigger("WeaveSway");
+
+                BodyAnimator.SetTrigger("Idle");
                 bodyState = BodyState.Neutral;
                 Debug.Log("Neutral Body");
             }
@@ -202,12 +239,16 @@ public class PlayerControl : MonoBehaviour
             //From Aim to Duck
             else if (aimState == AimState.AimLeft && hand == "Right" && bodyState==BodyState.Neutral)
             {
+                BodyAnimator.SetTrigger("Duck");
+
                 aimState = AimState.Neutral;
                 bodyState = BodyState.Duck;
                 Debug.Log("Duck");
             }
             else if (aimState == AimState.AimRight && hand == "Left" && bodyState == BodyState.Neutral)
             {
+                BodyAnimator.SetTrigger("Duck");
+
                 aimState = AimState.Neutral;
                 bodyState = BodyState.Duck;
                 Debug.Log("Duck");
@@ -216,6 +257,8 @@ public class PlayerControl : MonoBehaviour
             //From Aim to Duck
             else if (bodyState==BodyState.Sway)
             {
+                BodyAnimator.SetTrigger("Duck");
+
                 aimState = AimState.Neutral;
                 bodyState = BodyState.Duck;
                 Debug.Log("Duck");
@@ -236,6 +279,9 @@ public class PlayerControl : MonoBehaviour
             //Duck to Neutral
             if (bodyState == BodyState.Duck)
             {
+                BodyAnimator.ResetTrigger("Duck");
+                BodyAnimator.SetTrigger("Idle");
+
                 Debug.Log("Stop Duck");
                 bodyState = BodyState.Neutral;
             }
@@ -260,6 +306,15 @@ public class PlayerControl : MonoBehaviour
                         opponentEntity.ProcessHit(Punch.Straight, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
+
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 4);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 4);
+                        }
                     }
 
                     // Outside
@@ -268,6 +323,15 @@ public class PlayerControl : MonoBehaviour
                         opponentEntity.ProcessHit(Punch.Hook, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
+
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 3);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 3);
+                        }
                     }
 
                     // Inside
@@ -276,6 +340,15 @@ public class PlayerControl : MonoBehaviour
                         opponentEntity.ProcessHit(Punch.Cross, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
+
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 2);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 2);
+                        }
                     }
 
                     // Jab
@@ -284,6 +357,15 @@ public class PlayerControl : MonoBehaviour
                         opponentEntity.ProcessHit(Punch.Jab, hand);
                         armState = ArmState.Idle;
                         playerEntity.Stamina -= playerEntity.StaminaDrain;
+
+                        if (hand == "Left Hand")
+                        {
+                            BodyAnimator.SetInteger("LeftPunch", 1);
+                        }
+                        else
+                        {
+                            BodyAnimator.SetInteger("RightPunch", 1);
+                        }
                     }
                 }
                 
